@@ -3,53 +3,9 @@ const MASTER_KEY = "Digital Marketing"; // Website Unlock Password
 let attemptsLeft = 3;
 let selectedTargetCard = null;
 
-// Timer Configuration (15 Minutes in Seconds)
-let totalSeconds = 15 * 60;
-let countdownInterval = null;
-
-// Initialize Timer on Page Load
-window.addEventListener('DOMContentLoaded', () => {
-    start15MinTimer();
-});
-
-function start15MinTimer() {
-    const timerDisplay = document.getElementById('countdownTimer');
-    const masterInput = document.getElementById('masterPassInput');
-    const unlockButton = document.getElementById('unlockBtn');
-    const statusMsg = document.getElementById('lockStatusMessage');
-
-    countdownInterval = setInterval(() => {
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = totalSeconds % 60;
-
-        // Format MM:SS
-        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-        
-        timerDisplay.innerText = `${formattedMinutes}:${formattedSeconds}`;
-
-        if (totalSeconds <= 0) {
-            clearInterval(countdownInterval);
-            timerDisplay.innerText = "00:00";
-            timerDisplay.style.color = "#22c55e"; // Green on unlock
-            
-            // Enable Pass Input & Unlock Button
-            masterInput.disabled = false;
-            unlockButton.disabled = false;
-            unlockButton.style.opacity = "1";
-            unlockButton.style.cursor = "pointer";
-            statusMsg.innerText = "Access granted! Enter master key to reveal results.";
-            statusMsg.style.color = "#22c55e";
-        } else {
-            totalSeconds--;
-        }
-    }, 1000);
-}
-
 // 1. Site-wide Master Security Gate
 function unlockSite(e) {
     e.preventDefault();
-    if (totalSeconds > 0) return; // Prevent unlock before timer reaches 0
 
     const inputPass = document.getElementById('masterPassInput').value.trim();
     const errContainer = document.getElementById('gateErrorMessage');
