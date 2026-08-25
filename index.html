@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovizes Logo Competition - Classified Winners</title>
+    
+    <!-- Website Favicon / Tab Icon (SVG Data URI used for instant display) -->
+    <link rel="icon" type="image/svg+xml" href="491572095_702585159095391_8832053657600085431_n__2_-removebg-preview.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Main Website Lock Screen Modal -->
+    <div id="siteLockOverlay" class="gate-overlay">
+        <div class="gate-card" id="gateCard">
+            <!-- Innovizes Brand Logo inside Lock Screen -->
+            <div class="brand-logo-wrapper">
+                <div class="brand-icon"><img src="491572095_702585159095391_8832053657600085431_n__2_-removebg-preview.png" alt="" srcset=""></div>
+                
+            </div>
+            
+            <h2>Restricted Access</h2>
+            <p>Enter the master key to reveal the competition results.</p>
+
+            <form id="gateForm" onsubmit="unlockSite(event)">
+                <div class="input-group">
+                    <input type="password" id="masterPassInput" placeholder="Enter Master Key" required autocomplete="off">
+                </div>
+                <button type="submit" id="unlockBtn"><i class="fa-solid fa-key"></i> Unlock Portal</button>
+            </form>
+
+            <div class="attempt-tracker">
+                Attempts Remaining: <span id="attemptsCount">3</span>
+            </div>
+            <p id="gateErrorMessage" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Candidate Reveal Password Modal -->
+    <div id="cardLockModal" class="gate-overlay hidden">
+        <div class="gate-card">
+            <div class="gate-icon gold-icon"><i class="fa-solid fa-lock"></i></div>
+            <h3 id="modalTitle">Decrypt Candidate Data</h3>
+            <p id="modalSub">Enter candidate's exact name as the security code to reveal position.</p>
+
+            <form onsubmit="validateCandidatePass(event)">
+                <div class="input-group">
+                    <input type="text" id="candidatePassInput" placeholder="Enter Candidate Name" required autocomplete="off">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeCandidateModal()">Cancel</button>
+                    <button type="submit"><i class="fa-solid fa-unlock"></i> Reveal</button>
+                </div>
+            </form>
+            <p id="candidateErrorMsg" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Ambient Lighting -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <div class="container blurred-site" id="mainContainer">
+        <!-- Main Header with Innovizes Logo -->
+        <header>
+            <div class="main-logo-container">
+                <div class="main-logo-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <div class="main-logo-text">INNOVIZES</div>
+            </div>
+            <div class="badge"><i class="fa-solid fa-trophy"></i> Official Announcement</div>
+            <h1>Logo Competition Winners<br>DIgital Marketing Group</h1>
+            <p class="subtitle">Click on each encrypted candidate card to unlock their rank & logo!</p>
+        </header>
+
+        <!-- Winners Section -->
+        <div class="section-title"><i class="fa-solid fa-crown"></i> Competition Winners</div>
+        <section class="winners-grid">
+            
+            <!-- 1st Place -->
+            <div class="card rank-1 locked" data-name="Rimsha Khawar" data-type="gold" onclick="openCandidateModal(this)">
+                <div class="overlay">
+                    <i class="fa-solid fa-user-shield lock-icon"></i>
+                    <span>Click to Enter Password</span>
+                </div>
+                <div class="card-content">
+                    <div class="crown"><i class="fa-solid fa-crown"></i></div>
+                    <div class="rank-badge gold"><i class="fa-solid fa-star"></i> 1st Winner</div>
+                    
+                    <!-- Candidate Logo Preview Box -->
+                    <!-- <div class="logo-preview-box">
+                        <img src=" https://tse1.mm.bing.net/th/id/OIP.dyBUGT7WQMlH8sgqblDLkgHaHa?r=0&w=626&h=626&rs=1&pid=ImgDetMain&o=7&rm=3" alt="1st Place Logo Design" class="candidate-logo-img">
+                    </div> -->
+
+                    <h2 class="candidate-name">Rimsha Khawar</h2>
+                    <div class="prize-tag gold-tag"><i class="fa-solid fa-trophy"></i> Grand Prize</div>
+                    <p class="prize-details"><b>UMRAH</b>/<b>DUBAI</b> TRIP WITH FAMILY</p>
+                </div>
+            </div>
+
+            <!-- 2nd Place -->
+            <div class="card rank-2 locked" data-name="Afaf Kainat" data-type="silver" onclick="openCandidateModal(this)">
+                <div class="overlay">
+                    <i class="fa-solid fa-user-shield lock-icon"></i>
+                    <span>Click to Enter Password</span>
+                </div>
+                <div class="card-content">
+                    <div class="crown silver-crown"><i class="fa-solid fa-crown"></i></div>
+                    <div class="rank-badge silver"><i class="fa-solid fa-star"></i> 2nd Winner</div>
+                    
+                    <!-- <div class="logo-preview-box">
+                        <img src="https://via.placeholder.com/150/e2e8f0/000000?text=2nd+Logo" alt="2nd Place Logo Design" class="candidate-logo-img">
+                    </div> -->
+
+                    <h2 class="candidate-name">Afaf Kainat</h2>
+                    <div class="prize-tag silver-tag"><i class="fa-solid fa-award"></i> Major Prize</div>
+                    <p class="prize-details"><b>IPHONE 17 PRO</b>/<b>GOOGLE PIXEL 10 PRO</b></p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Runners-Up Section -->
+        <div class="section-title"><i class="fa-solid fa-medal"></i> Outstanding Runners-Up</div>
+        <section class="runners-grid">
+            
+            <!-- 1st Runner-Up -->
+            <div class="card rank-runner locked" data-name="Sumaiya Ibrahim" data-type="bronze" onclick="openCandidateModal(this)">
+                <div class="overlay">
+                    <i class="fa-solid fa-user-shield lock-icon"></i>
+                    <span>Click to Enter Password</span>
+                </div>
+                <div class="card-content">
+                    <div class="rank-badge bronze">1st Runner-Up</div>
+                    
+                    <!-- <div class="logo-preview-box">
+                        <img src="https://via.placeholder.com/150/f97316/ffffff?text=3rd+Logo" alt="3rd Place Logo Design" class="candidate-logo-img">
+                    </div> -->
+
+                    <h3 class="candidate-name">Sumaiya Ibrahim</h3>
+                    <div class="prize-tag"><i class="fa-solid fa-gift"></i> Prize</div>
+                    <p class="prize-details">Rs. 100,000 + APPLE AIRPODS + CERTIFICATE</p>
+                </div>
+            </div>
+
+            <!-- 2nd Runner-Up -->
+            <div class="card rank-runner locked" data-name="Amna Batool" data-type="bronze" onclick="openCandidateModal(this)">
+                <div class="overlay">
+                    <i class="fa-solid fa-user-shield lock-icon"></i>
+                    <span>Click to Enter Password</span>
+                </div>
+                <div class="card-content">
+                    <div class="rank-badge bronze">2nd Runner-Up</div>
+                    
+                    <!-- <div class="logo-preview-box">
+                        <img src="https://via.placeholder.com/150/6366f1/ffffff?text=4th+Logo" alt="4th Place Logo Design" class="candidate-logo-img">
+                    </div> -->
+
+                    <h3 class="candidate-name">Amna Batool</h3>
+                    <div class="prize-tag"><i class="fa-solid fa-gift"></i> Prize</div>
+                    <p class="prize-details">Rs. 70,000 + APPLE SERIES 8 WATCH + CERTIFICATE </p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>Thank you to all participants who shaped the future of <strong>Innovizes</strong>.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
